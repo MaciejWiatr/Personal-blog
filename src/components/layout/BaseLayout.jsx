@@ -1,4 +1,4 @@
-import { NavBar } from "../shared";
+import NavBar from "../Navbar";
 import styled from "@emotion/styled";
 import mq from "../../utils/mediaQuery";
 import { motion } from "framer-motion";

@@ -1,0 +1,36 @@
+import { gql } from "graphql-request";
+
+const getAllPostsQuery = gql`
+	query MyQuery {
+		posts {
+			createdAt
+			slug
+			title
+			coverImage {
+				url
+			}
+			id
+		}
+	}
+`;
+
+const getPostBySlugQuery = gql`
+	query getPostBySlug($slug: String!) {
+		post(where: { slug: $slug }) {
+			title
+			tags
+			slug
+			coverImage {
+				url
+			}
+			author {
+				name
+			}
+			content {
+				markdown
+			}
+		}
+	}
+`;
+
+export { getAllPostsQuery, getPostBySlugQuery };

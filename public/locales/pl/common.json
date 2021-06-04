@@ -1,3 +1,5 @@
 {
-	"heroText": "Cześć, jestem <0><1>Maciej</1></0> a to mój blog"
+  "heroText": "Cześć, jestem <0>Maciej</0> a to mój blog",
+  "heroDescription": "Dzięki za odwiedzenie mojego bloga, mam nadzieję że znajdziesz tu coś dla siebie :)",
+  "postSectionHeader": "Ostatnie wpisy:"
 }
