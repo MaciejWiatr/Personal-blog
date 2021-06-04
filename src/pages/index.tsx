@@ -14,6 +14,7 @@ import {
 import { initializeApollo } from "../lib/apolloClient";
 import Link from "next/link";
 import { getAllPosts } from "../gql/posts.graphql";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function Home() {
 	const { t } = useTranslation("common");
@@ -39,7 +40,12 @@ export default function Home() {
 							<a>
 								<PostElement>
 									<PostImageWrapper>
-										<PostImage src={post.coverImage.url} />
+										<AnimatePresence>
+											<PostImage
+												layoutId={`image-${post.id}`}
+												src={post.coverImage.url}
+											/>
+										</AnimatePresence>
 									</PostImageWrapper>
 									<PostTitle>{post.title}</PostTitle>
 								</PostElement>
@@ -109,21 +115,21 @@ const PostList = styled.ul`
 
 const PostElement = styled.li`
 	width: 100%;
-	overflow: hidden;
+	/* overflow: hidden; */
 `;
 
-const PostImage = styled.img`
+const PostImage = styled(motion.img)`
 	width: 100%;
 	transform: scale(1.25);
-	transition: all 0.25s ease;
 
 	&:hover {
 		transform: scale(1.1);
 	}
 `;
 
-const PostImageWrapper = styled.div`
+const PostImageWrapper = styled(motion.div)`
 	overflow: hidden;
+	border-radius: 1rem;
 `;
 
 const PostTitle = styled.h3`

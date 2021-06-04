@@ -1,5 +1,6 @@
 query getAllPosts {
 	posts {
+		id
 		createdAt
 		slug
 		title
@@ -11,6 +12,7 @@ query getAllPosts {
 
 query getPostBySlug($slug: String!) {
 	post(where: { slug: $slug }) {
+		id
 		title
 		tags
 		slug
@@ -19,6 +21,9 @@ query getPostBySlug($slug: String!) {
 		}
 		content {
 			markdown
+		}
+		coverImage {
+			url
 		}
 	}
 }

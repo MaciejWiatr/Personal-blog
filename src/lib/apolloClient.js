@@ -13,17 +13,10 @@ function createApolloClient() {
 		ssrMode: typeof window === "undefined",
 		link: new HttpLink({
 			uri: "https://api-eu-central-1.graphcms.com/v2/ckpi6l0sg055a01w399dhbrwq/master", // Server URL (must be absolute)
-			credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+			// credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+			credentials: "true",
 		}),
-		cache: new InMemoryCache({
-			typePolicies: {
-				Query: {
-					fields: {
-						allPosts: concatPagination(),
-					},
-				},
-			},
-		}),
+		cache: new InMemoryCache(),
 	});
 }
 

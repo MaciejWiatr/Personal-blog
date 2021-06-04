@@ -7,6 +7,7 @@ import ColormodeProvider from "../contexts/ThemeContext";
 import { useGetPostBySlugQuery } from "../generated/graphql";
 import { useApollo } from "../lib/apolloClient";
 import "../../styles/globals.css";
+import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 function MyApp({ Component, pageProps }) {
 	const apolloClient = useApollo(pageProps);
@@ -17,7 +18,11 @@ function MyApp({ Component, pageProps }) {
 			<AppWrapper ref={appRef}>
 				<MouseHoverContext appRef={appRef}>
 					<ColormodeProvider>
-						<Component {...pageProps} />
+						<AnimatePresence exitBeforeEnter>
+							<AnimateSharedLayout type="crossfade">
+								<Component {...pageProps} />
+							</AnimateSharedLayout>
+						</AnimatePresence>
 					</ColormodeProvider>
 				</MouseHoverContext>
 			</AppWrapper>

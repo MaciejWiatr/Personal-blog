@@ -1,6 +1,7 @@
 import { NavBar } from "../shared";
 import styled from "@emotion/styled";
 import mq from "../../utils/mediaQuery";
+import { motion } from "framer-motion";
 
 const BaseLayout = ({ children }) => {
 	return (

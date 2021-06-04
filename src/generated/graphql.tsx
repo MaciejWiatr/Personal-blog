@@ -4523,7 +4523,7 @@ export type GetAllPostsQuery = (
   { __typename?: 'Query' }
   & { posts: Array<(
     { __typename?: 'Post' }
-    & Pick<Post, 'createdAt' | 'slug' | 'title'>
+    & Pick<Post, 'id' | 'createdAt' | 'slug' | 'title'>
     & { coverImage?: Maybe<(
       { __typename?: 'Asset' }
       & Pick<Asset, 'url'>
@@ -4540,14 +4540,17 @@ export type GetPostBySlugQuery = (
   { __typename?: 'Query' }
   & { post?: Maybe<(
     { __typename?: 'Post' }
-    & Pick<Post, 'title' | 'tags' | 'slug'>
+    & Pick<Post, 'id' | 'title' | 'tags' | 'slug'>
     & { author?: Maybe<(
       { __typename?: 'Author' }
       & Pick<Author, 'name'>
     )>, content: (
       { __typename?: 'RichText' }
       & Pick<RichText, 'markdown'>
-    ) }
+    ), coverImage?: Maybe<(
+      { __typename?: 'Asset' }
+      & Pick<Asset, 'url'>
+    )> }
   )> }
 );
 
@@ -4555,6 +4558,7 @@ export type GetPostBySlugQuery = (
 export const GetAllPostsDocument = gql`
     query getAllPosts {
   posts {
+    id
     createdAt
     slug
     title
@@ -4594,6 +4598,7 @@ export type GetAllPostsQueryResult = Apollo.QueryResult<GetAllPostsQuery, GetAll
 export const GetPostBySlugDocument = gql`
     query getPostBySlug($slug: String!) {
   post(where: {slug: $slug}) {
+    id
     title
     tags
     slug
@@ -4602,6 +4607,9 @@ export const GetPostBySlugDocument = gql`
     }
     content {
       markdown
+    }
+    coverImage {
+      url
     }
   }
 }
