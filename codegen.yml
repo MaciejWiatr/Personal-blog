@@ -7,9 +7,6 @@ generates:
             - "typescript"
             - "typescript-operations"
             - "typescript-react-apollo"
-        config:
-            apolloImportFrom: "src/lib/apolloClient.js"
-            withHooks: true
     ./graphql.schema.json:
         plugins:
             - "introspection"

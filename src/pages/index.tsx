@@ -1,24 +1,17 @@
 import styled from "@emotion/styled";
-import { useContext } from "react";
-import { ColormodeContext } from "../contexts/ThemeContext";
 import mq from "../utils/mediaQuery";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { Trans, useTranslation } from "react-i18next";
 import { MouseHoverEffect } from "../components/MouseFollower";
 import BaseLayout from "../components/layout/BaseLayout";
 import { PrimaryText } from "../components/shared/text";
-import {
-	useGetAllPostsQuery,
-	useGetPostBySlugQuery,
-} from "../generated/graphql";
-import { initializeApollo } from "../lib/apolloClient";
 import Link from "next/link";
-import { getAllPosts } from "../gql/posts.graphql";
 import { AnimatePresence, motion } from "framer-motion";
+import gqClient from "../gql/client";
+import { getAllPostsQuery } from "../gql/queries";
 
-export default function Home() {
+export default function Home({ posts }) {
 	const { t } = useTranslation("common");
-	const { data } = useGetAllPostsQuery();
 
 	return (
 		<BaseLayout>
@@ -29,23 +22,19 @@ export default function Home() {
 					components={[<HoverablePrimaryText />]}
 				/>
 			</HomeTitle>
-			<HomeDescription>
-				Mam nadzieję że znajdziesz tu coś dla siebie 😀
-			</HomeDescription>
-			<PostHeader>Moje wpisy:</PostHeader>
+			<HomeDescription>{t("heroDescription")}</HomeDescription>
+			<PostHeader>{t("postSectionHeader")}</PostHeader>
 			<PostList>
-				{data.posts.map((post) => {
+				{posts.map((post) => {
 					return (
 						<Link href={`/post/${post.slug}`} passHref>
 							<a>
 								<PostElement>
 									<PostImageWrapper>
-										<AnimatePresence>
-											<PostImage
-												layoutId={`image-${post.id}`}
-												src={post.coverImage.url}
-											/>
-										</AnimatePresence>
+										<PostImage
+											layoutId={`image-${post.id}`}
+											src={post.coverImage.url}
+										/>
 									</PostImageWrapper>
 									<PostTitle>{post.title}</PostTitle>
 								</PostElement>
@@ -59,15 +48,12 @@ export default function Home() {
 }
 
 export async function getStaticProps({ locale }) {
-	const apolloClient = initializeApollo();
-	await apolloClient.query({
-		query: getAllPosts,
-	});
+	const data = await gqClient.request(getAllPostsQuery);
 
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ["common", "navbar"])),
-			__APOLLO_STATE__: apolloClient.cache.extract(),
+			posts: data.posts,
 		},
 	};
 }
@@ -115,21 +101,20 @@ const PostList = styled.ul`
 
 const PostElement = styled.li`
 	width: 100%;
-	/* overflow: hidden; */
+	height: 15rem;
 `;
 
-const PostImage = styled(motion.img)`
+const PostImage = styled.img`
 	width: 100%;
-	transform: scale(1.25);
-
-	&:hover {
-		transform: scale(1.1);
-	}
+	object-fit: cover;
+	border-radius: 1rem;
 `;
 
-const PostImageWrapper = styled(motion.div)`
+const PostImageWrapper = styled.div`
 	overflow: hidden;
 	border-radius: 1rem;
+	object-fit: cover;
+	/* height: 75%; */
 `;
 
 const PostTitle = styled.h3`

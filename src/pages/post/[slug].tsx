@@ -1,24 +1,17 @@
 import BaseLayout from "../../components/layout/BaseLayout";
-import { initializeApollo } from "../../lib/apolloClient";
-import { getAllPosts, getPostBySlug } from "../../gql/posts.graphql";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { AnimatePresence, motion } from "framer-motion";
 import { Post } from "../../generated/graphql";
 import styled from "@emotion/styled";
+import gqClient from "../../gql/client";
+import { getAllPostsQuery, getPostBySlugQuery } from "../../gql/queries";
 
 const PostPage = ({ post }: { post: Post }) => {
 	return (
 		<BaseLayout>
-			<AnimatePresence>
-				{post.coverImage.url && (
-					<PostImageWrapper>
-						<PostImage
-							layoutId={`image-${post.id}`}
-							src={post.coverImage.url}
-						/>
-					</PostImageWrapper>
-				)}
-			</AnimatePresence>
+			<PostImageWrapper>
+				<PostImage src={post.coverImage.url} />
+			</PostImageWrapper>
 		</BaseLayout>
 	);
 };
@@ -33,12 +26,11 @@ const PostImageWrapper = styled.div`
 `;
 
 export async function getStaticPaths() {
-	const apolloClient = initializeApollo();
-	const { data } = await apolloClient.query({ query: getAllPosts });
+	const { posts } = await gqClient.request(getAllPostsQuery);
 
 	const paths = [];
 
-	data.posts.forEach((post) => {
+	posts.forEach((post) => {
 		paths.push({
 			params: { slug: post.slug },
 			locale: "en",
@@ -50,15 +42,14 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
-	const apolloClient = initializeApollo();
-	const { data } = await apolloClient.query({
-		query: getPostBySlug,
-		variables: { slug: params.slug },
+	const { post } = await gqClient.request(getPostBySlugQuery, {
+		slug: params.slug,
 	});
+
 	return {
 		props: {
 			...(await serverSideTranslations(locale, ["common", "navbar"])),
-			post: data.post,
+			post,
 		},
 	};
 }
