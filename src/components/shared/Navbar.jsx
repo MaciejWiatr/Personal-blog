@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { FiSun, FiMoon } from "react-icons/fi";
 import { useTranslation } from "next-i18next";
 import { MouseHoverEffect } from "../MouseFollower";
+import Link from "next/link";
 
 const NavBar = () => {
 	const { isDark, toggleDark } = useDarkMode();
@@ -11,7 +12,11 @@ const NavBar = () => {
 
 	return (
 		<NavContainer>
-			<NavHeader>Maciej Wiatr</NavHeader>
+			<Link href="/" passHref>
+				<a>
+					<NavHeader>Maciej Wiatr</NavHeader>
+				</a>
+			</Link>
 			<NavItems>
 				<NavItem>{t("posts")}</NavItem>
 				<NavItem>{t("search")}</NavItem>

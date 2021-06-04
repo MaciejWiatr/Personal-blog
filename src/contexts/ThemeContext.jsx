@@ -1,14 +1,15 @@
 import { ThemeProvider } from "@emotion/react";
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { createContext } from "react";
-import Cookie from "js-cookie";
 import { darkTheme, lightTheme } from "../themes";
+import { MouseContext } from "../components/MouseFollower";
 
 const defaultThemeContextValue = "yes";
 const ColormodeContext = createContext(defaultThemeContextValue);
 
 const ColormodeProvider = ({ children }) => {
 	const [isDark, setIsDark] = useState(false);
+	const { setMouseState } = useContext(MouseContext);
 
 	useEffect(() => {
 		if (typeof window !== undefined) {

@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useMouse, useHover } from "react-use";
 import { useContext, useEffect, useState, createContext } from "react";
 
@@ -71,7 +71,10 @@ const MouseImage = styled(motion.img)`
 	object-fit: cover;
 `;
 
-const defaultMouseState = { isHovered: false, hoverImg: null };
+const defaultMouseState = {
+	isHovered: false,
+	hoverImg: null,
+};
 const MouseContext = createContext(defaultMouseState);
 
 const MouseHoverContext = ({ children, appRef }) => {
@@ -79,6 +82,7 @@ const MouseHoverContext = ({ children, appRef }) => {
 
 	return (
 		<MouseContext.Provider value={{ mouseState, setMouseState, appRef }}>
+			<MouseFollower />
 			{children}
 		</MouseContext.Provider>
 	);
@@ -111,4 +115,4 @@ const HoverArea = styled.span`
 `;
 
 export default MouseFollower;
-export { MouseHoverContext, MouseHoverEffect };
+export { MouseHoverContext, MouseHoverEffect, MouseContext };
