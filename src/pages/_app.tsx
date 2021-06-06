@@ -1,21 +1,20 @@
 import { appWithTranslation } from "next-i18next";
 import { useRef } from "react";
-import MouseFollower, { MouseHoverContext } from "../components/MouseFollower";
+import { MouseContextProvider } from "../contexts/MouseContext";
 import { AppWrapper } from "../components/shared";
 import ColormodeProvider from "../contexts/ThemeContext";
 import "../../styles/globals.css";
-import { AnimatePresence, AnimateSharedLayout } from "framer-motion";
 
 function MyApp({ Component, pageProps }) {
 	const appRef = useRef(null);
 
 	return (
 		<AppWrapper ref={appRef}>
-			<MouseHoverContext appRef={appRef}>
+			<MouseContextProvider appRef={appRef}>
 				<ColormodeProvider>
 					<Component {...pageProps} />
 				</ColormodeProvider>
-			</MouseHoverContext>
+			</MouseContextProvider>
 		</AppWrapper>
 	);
 }
