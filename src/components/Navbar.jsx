@@ -42,9 +42,8 @@ const NavBar = () => {
 	const { locale } = useRouter();
 	const smallHeaderControlls = useAnimation();
 	const bigHeaderControlls = useAnimation();
-	const { isSm } = useMediaQuery();
+	const { isSm, isXs } = useMediaQuery();
 	const animateHeader = useCallback(() => {
-		console.log("Animated header");
 		if (isSm) {
 			bigHeaderControlls.start("hide");
 			smallHeaderControlls.start("show");
@@ -79,9 +78,13 @@ const NavBar = () => {
 				</a>
 			</Link>
 			<NavItems>
-				<NavItem>{t("posts")}</NavItem>
-				<NavItem>{t("search")}</NavItem>
-				<NavItem>{t("contact")}</NavItem>
+				{!isXs && (
+					<>
+						<NavItem>{t("posts")}</NavItem>
+						<NavItem>{t("search")}</NavItem>
+						<NavItem>{t("contact")}</NavItem>
+					</>
+				)}
 				<NavItem>
 					<Link href="/" locale={locale === "pl" ? "en" : "pl"}>
 						<LanguageSwitchLink>
@@ -110,9 +113,9 @@ const NavBar = () => {
 const LanguageSwitchLink = styled.a`
 	color: ${({ theme }) => theme.textBase};
 	border: ${({ theme }) => theme.textBase} 0.1rem solid;
-	height: 2rem;
-	padding-left: 0.5rem;
-	padding-right: 0.5rem;
+	height: 2.5rem;
+	padding-left: 0.7rem;
+	padding-right: 0.7rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -122,11 +125,13 @@ const LanguageSwitchLink = styled.a`
 `;
 
 const NavContainer = styled.nav`
+	position: sticky;
+	top: 0;
 	overflow: hidden;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	position: relative;
+	/* position: relative; */
 	height: 3rem;
 `;
 
@@ -146,6 +151,7 @@ const NavItem = styled.li`
 	display: flex;
 	align-items: center;
 	z-index: 9;
+	font-weight: 600;
 	&:not(:last-child) {
 		margin-right: 1rem;
 	}
@@ -159,8 +165,8 @@ const ColormodeButton = styled(motion.button)`
 	border: ${({ theme }) => theme.textBase} 0.1rem solid;
 	background: none;
 	font-size: medium;
-	height: 2rem;
-	width: 2rem;
+	height: 2.5rem;
+	width: 2.5rem;
 	border-radius: 50%;
 	& > svg {
 		transform: translateY(2px);
