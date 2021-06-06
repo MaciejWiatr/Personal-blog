@@ -2,7 +2,7 @@ import { ThemeProvider } from "@emotion/react";
 import { useContext, useEffect, useLayoutEffect, useState } from "react";
 import { createContext } from "react";
 import { darkTheme, lightTheme } from "../themes";
-import { MouseContext } from "../components/MouseFollower";
+import { MouseContext } from "./MouseContext";
 
 const defaultThemeContextValue = "yes";
 const ColormodeContext = createContext(defaultThemeContextValue);

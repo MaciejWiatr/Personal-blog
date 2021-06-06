@@ -2,26 +2,26 @@ import styled from "@emotion/styled";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useMouse, useHover } from "react-use";
 import { useContext, useEffect, useState, createContext } from "react";
+import { MouseContext } from "../contexts/MouseContext";
+import useMediaQuery from "../hooks/useMediaQuery";
 
-const animateVariants = {
-	start: {
-		scale: 100,
-	},
-	stop: {
-		scale: 3,
-	},
+const getMousePosOrDefault = (pos, isSm) => {
+	if (isSm) return -500;
+	if (pos) return pos - 20;
+	return -100;
 };
 
 const MouseFollower = () => {
 	const { mouseState, appRef } = useContext(MouseContext);
+	const { isSm } = useMediaQuery();
 	const { docX, docY } = useMouse(appRef);
 	const { isHovered, hoverImg } = mouseState;
 
 	return (
 		<MouseCircle
 			animate={{
-				x: docX - 20,
-				y: docY - 20,
+				x: getMousePosOrDefault(docX, isSm),
+				y: getMousePosOrDefault(docY, isSm),
 				scale: isHovered ? 3 : 1,
 			}}
 			transition={{
@@ -71,23 +71,6 @@ const MouseImage = styled(motion.img)`
 	object-fit: cover;
 `;
 
-const defaultMouseState = {
-	isHovered: false,
-	hoverImg: null,
-};
-const MouseContext = createContext(defaultMouseState);
-
-const MouseHoverContext = ({ children, appRef }) => {
-	const [mouseState, setMouseState] = useState(defaultMouseState);
-
-	return (
-		<MouseContext.Provider value={{ mouseState, setMouseState, appRef }}>
-			<MouseFollower />
-			{children}
-		</MouseContext.Provider>
-	);
-};
-
 const MouseHoverEffect = ({ children, img = null, scale = 3 }) => {
 	const { mouseState, setMouseState } = useContext(MouseContext);
 
@@ -115,4 +98,4 @@ const HoverArea = styled.span`
 `;
 
 export default MouseFollower;
-export { MouseHoverContext, MouseHoverEffect, MouseContext };
+export { MouseHoverEffect };
