@@ -14,12 +14,6 @@
 		"isolatedModules": true,
 		"jsx": "preserve"
 	},
-	"include": [
-		"next-env.d.ts",
-		"**/*.ts",
-		"**/*.tsx",
-		"**/*.d.ts",
-		"src/components/Navbar.jsx"
-	],
+	"include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts"],
 	"exclude": ["node_modules"]
 }
