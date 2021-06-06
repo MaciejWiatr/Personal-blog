@@ -9,20 +9,23 @@ import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import gqClient from "../gql/client";
 import { getAllPostsQuery } from "../gql/queries";
+import timeToRead from "../utils/timeToRead";
 
 export default function Home({ posts }) {
 	const { t } = useTranslation("common");
 
 	return (
 		<BaseLayout>
-			<HomeTitle>
-				<Trans
-					i18nKey="heroText"
-					t={t}
-					components={[<HoverablePrimaryText />]}
-				/>
-			</HomeTitle>
-			<HomeDescription>{t("heroDescription")}</HomeDescription>
+			<HeroHeader>
+				<HeroTitle>
+					<Trans
+						i18nKey="heroText"
+						t={t}
+						components={[<HoverablePrimaryText />]}
+					/>
+				</HeroTitle>
+				<HeroDescription>{t("heroDescription")}</HeroDescription>
+			</HeroHeader>
 			<PostHeader>{t("postSectionHeader")}</PostHeader>
 			<PostList>
 				{posts.map((post) => {
@@ -32,11 +35,18 @@ export default function Home({ posts }) {
 								<PostElement>
 									<PostImageWrapper>
 										<PostImage
-											layoutId={`image-${post.id}`}
+											initial={{ scale: 1.1 }}
+											whileHover={{ scale: 1.25 }}
 											src={post.coverImage.url}
 										/>
 									</PostImageWrapper>
-									<PostTitle>{post.title}</PostTitle>
+									<PostDescription>
+										<PostReadTime>
+											{timeToRead(post.content.text)} min
+											read
+										</PostReadTime>
+										<PostTitle>{post.title}</PostTitle>
+									</PostDescription>
 								</PostElement>
 							</a>
 						</Link>
@@ -58,11 +68,30 @@ export async function getStaticProps({ locale }) {
 	};
 }
 
-const HomeTitle = styled.h1`
+const PostDescription = styled.div`
+	width: 100%;
+	/* padding: 1rem; */
+`;
+
+const PostReadTime = styled.p`
+	text-align: left;
+	margin: 0px;
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
+`;
+
+const HeroHeader = styled.header`
+	width: 100%;
+	margin-top: 5rem;
+	margin-bottom: 5rem;
+`;
+
+const HeroTitle = styled.h1`
 	font-size: 4rem;
-	width: 50%;
+	width: 60%;
 	line-height: 4rem;
 	margin-bottom: 2rem;
+	font-weight: 700;
 
 	@media ${mq("lg")} {
 		width: 75%;
@@ -75,16 +104,18 @@ const HomeTitle = styled.h1`
 	}
 
 	@media ${mq("sm")} {
-		text-align: center;
 		line-height: 3rem;
 	}
 `;
 
-const HomeDescription = styled.p`
+const HeroDescription = styled.p`
 	font-size: 1rem;
+	padding-top: 1rem !important;
 `;
 
-const PostHeader = styled.h2``;
+const PostHeader = styled.h2`
+	font-weight: 700;
+`;
 
 const PostList = styled.ul`
 	width: 100%;
@@ -94,32 +125,51 @@ const PostList = styled.ul`
 	gap: 1rem;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 
-	@media ${mq("sm")} {
+	@media ${mq("md")} {
 		grid-template-columns: 1fr 1fr;
 	}
 `;
 
 const PostElement = styled.li`
 	width: 100%;
-	height: 15rem;
-`;
-
-const PostImage = styled.img`
-	width: 100%;
-	object-fit: cover;
-	border-radius: 1rem;
+	position: relative;
+	/* border: ${({ theme }) => theme.borderColor} 0.125rem solid;
+	border-radius: 0.5rem; */
+	overflow: hidden;
+	/* padding: 0.5rem; */
+	/* height: 15rem; */
 `;
 
 const PostImageWrapper = styled.div`
+	width: 100%;
+	border-radius: 0.25rem;
 	overflow: hidden;
-	border-radius: 1rem;
-	object-fit: cover;
-	/* height: 75%; */
+`;
+
+const PostImage = styled(motion.img)`
+	width: 100%;
+	overflow: hidden;
+	border-radius: 0.25rem;
+	/* border-radius: 0.25rem; */
+	/* border-top-right-radius: 0.5rem;
+	border-top-left-radius: 0.5rem; */
 `;
 
 const PostTitle = styled.h3`
 	margin: 0px;
-	margin-top: 0.5rem;
+	font-size: 1rem;
+	font-weight: 700;
+	flex-grow: 1;
+	height: 3rem;
+	transition: color 0.25s ease;
+
+	&:hover {
+		color: ${({ theme }) => theme.textPrimary};
+	}
+
+	@media ${mq("lg")} {
+		padding-bottom: 2rem !important;
+	}
 `;
 
 const HoverablePrimaryText = ({ children }) => (
