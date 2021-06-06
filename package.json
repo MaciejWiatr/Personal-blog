@@ -16,6 +16,7 @@
 		"framer-motion": "^4.1.17",
 		"graphql": "^15.5.0",
 		"graphql-request": "^3.4.0",
+		"js-base64": "^3.6.1",
 		"js-cookie": "^2.2.1",
 		"next": "^10.2.3",
 		"next-i18next": "^8.4.0",
@@ -27,7 +28,8 @@
 		"react-i18next": "^11.10.0",
 		"react-icons": "^4.2.0",
 		"react-ssr-prepass": "npm:preact-ssr-prepass",
-		"react-use": "^17.2.4"
+		"react-use": "^17.2.4",
+		"zustand": "^3.5.2"
 	},
 	"devDependencies": {
 		"@graphql-codegen/cli": "1.21.5",
