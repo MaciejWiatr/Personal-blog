@@ -9,6 +9,9 @@ const getAllPostsQuery = gql`
 			coverImage {
 				url
 			}
+			content {
+				text
+			}
 			id
 		}
 	}
