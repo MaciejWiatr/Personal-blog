@@ -2,8 +2,8 @@ import styled from "@emotion/styled";
 import { AnimatePresence, motion, useAnimation } from "framer-motion";
 import { useMouse, useHover } from "react-use";
 import { useContext, useEffect, useState, createContext } from "react";
-import { MouseContext } from "../contexts/MouseContext";
 import useMediaQuery from "../hooks/useMediaQuery";
+import useMouseStore from "../store/useMouseStore";
 
 const getMousePosOrDefault = (pos, isSm) => {
 	if (isSm) return -500;
@@ -11,11 +11,10 @@ const getMousePosOrDefault = (pos, isSm) => {
 	return -100;
 };
 
-const MouseFollower = () => {
-	const { mouseState, appRef } = useContext(MouseContext);
+const MouseFollower = ({ appRef }) => {
 	const { isSm } = useMediaQuery();
 	const { docX, docY } = useMouse(appRef);
-	const { isHovered, hoverImg } = mouseState;
+	const { isHovered, hoverImg } = useMouseStore();
 
 	return (
 		<MouseCircle
@@ -72,16 +71,17 @@ const MouseImage = styled(motion.img)`
 `;
 
 const MouseHoverEffect = ({ children, img = null, scale = 3 }) => {
-	const { mouseState, setMouseState } = useContext(MouseContext);
+	const { isHovered, setHovered, setHoverImg, resetState } = useMouseStore();
 
 	const handleMouseEnter = () => {
-		if (!mouseState.isHovered) {
-			setMouseState(() => ({ isHovered: true, hoverImg: img }));
+		if (!isHovered) {
+			setHovered(true);
+			if (img) setHoverImg(img);
 		}
 	};
 
 	const handleMouseLeave = () => {
-		setMouseState(() => ({ isHovered: false, hoverImg: false }));
+		resetState();
 	};
 
 	return (
