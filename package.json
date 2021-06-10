@@ -5,6 +5,7 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
+		"postbuild": "next-sitemap --config next-sitemap.config.js",
 		"start": "next start",
 		"build:export": "next build && next export",
 		"gql:gen": "graphql-codegen --config codegen.yml -r dotenv/config"
@@ -37,6 +38,7 @@
 		"@graphql-codegen/typescript": "1.22.1",
 		"@graphql-codegen/typescript-graphql-request": "^3.2.1",
 		"@graphql-codegen/typescript-operations": "1.18.0",
+		"next-sitemap": "^1.6.108",
 		"typescript": "^4.3.2"
 	}
 }
