@@ -1,13 +1,13 @@
 import styled from "@emotion/styled";
-import useDarkMode from "../hooks/useDarkMode";
 import { motion, useAnimation } from "framer-motion";
 import { FiSun, FiMoon } from "react-icons/fi";
 import { useTranslation } from "next-i18next";
 import { MouseHoverEffect } from "./MouseFollower";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
-import { useCallback, useEffect, useMemo } from "react";
+import { useCallback, useEffect } from "react";
 import useMediaQuery from "../hooks/useMediaQuery";
+import useDarkMode from "../hooks/useDarkMode";
 
 const slowTransition = {
 	type: "spring",
