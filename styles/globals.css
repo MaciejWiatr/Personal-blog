@@ -17,3 +17,14 @@ a {
 * {
 	box-sizing: border-box;
 }
+
+.light-mode {
+	--theme-bg-color: #deeeea;
+	--theme-text-base: #231e23;
+	--theme-text-primary: #bf1363;
+}
+.dark-mode {
+	--theme-bg-color: #231e23;
+	--theme-text-base: #deeeea;
+	--theme-text-primary: #bf1363;
+}

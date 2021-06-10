@@ -1,5 +1,5 @@
 import { ThemeProvider } from "@emotion/react";
-import { useEffect, useState } from "react";
+import useDarkMode from "use-dark-mode";
 import { createContext } from "react";
 import { darkTheme, lightTheme } from "../themes";
 
@@ -11,36 +11,15 @@ const defaultThemeContextValue = {
 const ColormodeContext = createContext(defaultThemeContextValue);
 
 const ColormodeProvider = ({ children }) => {
-	const [isDark, setIsDark] = useState(false);
+	const darkMode = useDarkMode(false);
 
-	useEffect(() => {
-		if (typeof window !== undefined) {
-			const val = localStorage.getItem("dark");
-
-			if (val === "yes") {
-				setIsDark(true);
-			} else if (val === "no") {
-				setIsDark(false);
-			} else {
-				console.log("Default theme wasnt found, using light");
-				setIsDark(false);
-			}
-		}
-	}, []);
-
-	const toggleDark = () => {
-		if (isDark) {
-			setIsDark(false);
-			localStorage.setItem("dark", "no");
-		} else if (!isDark) {
-			setIsDark(true);
-			localStorage.setItem("dark", "yes");
-		}
-	};
+	const toggleDark = darkMode.toggle;
 
 	return (
-		<ColormodeContext.Provider value={{ isDark, toggleDark }}>
-			<ThemeProvider theme={isDark ? darkTheme : lightTheme}>
+		<ColormodeContext.Provider
+			value={{ isDark: darkMode.value, toggleDark }}
+		>
+			<ThemeProvider theme={darkMode.value ? darkTheme : lightTheme}>
 				{children}
 			</ThemeProvider>
 		</ColormodeContext.Provider>

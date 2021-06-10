@@ -1,14 +1,14 @@
 const lightTheme = {
-	backgroundColor: "#deeeea",
-	textBase: "#231e23",
-	textPrimary: "#bf1363",
+	backgroundColor: "var(--theme-bg-color)",
+	textBase: "var(--theme-text-base)",
+	textPrimary: "var(--theme-text-primary)",
 	borderColor: "lightgray",
 };
 
 const darkTheme = {
-	backgroundColor: "#231e23",
-	textBase: "#deeeea",
-	textPrimary: "#bf1363",
+	backgroundColor: "var(--theme-bg-color)",
+	textBase: "var(--theme-text-base)",
+	textPrimary: "var(--theme-text-primary)",
 	borderColor: "#505050",
 };
 

@@ -28,6 +28,7 @@
 		"react-icons": "^4.2.0",
 		"react-ssr-prepass": "npm:preact-ssr-prepass",
 		"react-use": "^17.2.4",
+		"use-dark-mode": "^2.3.1",
 		"zustand": "^3.5.2"
 	},
 	"devDependencies": {
