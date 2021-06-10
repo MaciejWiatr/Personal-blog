@@ -1,10 +1,10 @@
 import BaseLayout from "../../components/layout/BaseLayout";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations";
 import { AnimatePresence, motion } from "framer-motion";
-import { Post } from "../../generated/graphql";
 import styled from "@emotion/styled";
-import gqClient from "../../gql/client";
+import gqClient, { sdk } from "../../gql/client";
 import { getAllPostsQuery, getPostBySlugQuery } from "../../gql/queries";
+import { GetPostBySlugQuery, Post } from "../../gql/generated";
 
 const PostPage = ({ post }: { post: Post }) => {
 	return (
@@ -12,6 +12,7 @@ const PostPage = ({ post }: { post: Post }) => {
 			<PostImageWrapper>
 				<PostImage src={post.coverImage.url} />
 			</PostImageWrapper>
+			{post.content.markdown} 
 		</BaseLayout>
 	);
 };
@@ -28,6 +29,7 @@ const PostImageWrapper = styled.div`
 export async function getStaticPaths() {
 	const { posts } = await gqClient.request(getAllPostsQuery);
 
+
 	const paths = [];
 
 	posts.forEach((post) => {
@@ -42,7 +44,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params, locale }) {
-	const { post } = await gqClient.request(getPostBySlugQuery, {
+	const { post } = await sdk.getPostBySlug({
 		slug: params.slug,
 	});
 

@@ -1,7 +1,7 @@
 import { gql } from "graphql-request";
 
 const getAllPostsQuery = gql`
-	query MyQuery {
+	query getAllPosts {
 		posts {
 			createdAt
 			slug
