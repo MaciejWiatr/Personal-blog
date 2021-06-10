@@ -6,7 +6,7 @@ import { MouseHoverEffect } from "../components/MouseFollower";
 import BaseLayout from "../components/layout/BaseLayout";
 import { PrimaryText } from "../components/shared/text";
 import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 import gqClient from "../gql/client";
 import { getAllPostsQuery } from "../gql/queries";
 import timeToRead from "../utils/timeToRead";
@@ -70,7 +70,6 @@ export async function getStaticProps({ locale }) {
 
 const PostDescription = styled.div`
 	width: 100%;
-	/* padding: 1rem; */
 `;
 
 const PostReadTime = styled.p`
@@ -133,11 +132,7 @@ const PostList = styled.ul`
 const PostElement = styled.li`
 	width: 100%;
 	position: relative;
-	/* border: ${({ theme }) => theme.borderColor} 0.125rem solid;
-	border-radius: 0.5rem; */
 	overflow: hidden;
-	/* padding: 0.5rem; */
-	/* height: 15rem; */
 `;
 
 const PostImageWrapper = styled.div`
@@ -150,9 +145,6 @@ const PostImage = styled(motion.img)`
 	width: 100%;
 	overflow: hidden;
 	border-radius: 0.25rem;
-	/* border-radius: 0.25rem; */
-	/* border-top-right-radius: 0.5rem;
-	border-top-left-radius: 0.5rem; */
 `;
 
 const PostTitle = styled.h3`
@@ -160,7 +152,6 @@ const PostTitle = styled.h3`
 	font-size: 1rem;
 	font-weight: 700;
 	flex-grow: 1;
-	height: 3rem;
 	transition: color 0.25s ease;
 
 	&:hover {
@@ -172,7 +163,7 @@ const PostTitle = styled.h3`
 	}
 `;
 
-const HoverablePrimaryText = ({ children }) => (
+const HoverablePrimaryText = ({ children = null }) => (
 	<MouseHoverEffect img="/img/prof.jpg">
 		<PrimaryText>{children}</PrimaryText>
 	</MouseHoverEffect>

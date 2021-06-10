@@ -1,15 +1,17 @@
 import { ThemeProvider } from "@emotion/react";
-import { useContext, useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { createContext } from "react";
 import { darkTheme, lightTheme } from "../themes";
-import { MouseContext } from "./MouseContext";
 
-const defaultThemeContextValue = "yes";
+const defaultThemeContextValue = {
+	isDark: false,
+	toggleDark: () => {},
+};
+
 const ColormodeContext = createContext(defaultThemeContextValue);
 
 const ColormodeProvider = ({ children }) => {
 	const [isDark, setIsDark] = useState(false);
-	const { setMouseState } = useContext(MouseContext);
 
 	useEffect(() => {
 		if (typeof window !== undefined) {
