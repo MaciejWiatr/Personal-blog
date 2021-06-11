@@ -6,8 +6,8 @@ import { MouseHoverEffect } from "./MouseFollower";
 import Link from "next/link";
 import { useRouter } from "next/dist/client/router";
 import { useCallback, useEffect } from "react";
-import useMediaQuery from "../hooks/useMediaQuery";
 import useDarkMode from "../hooks/useDarkMode";
+import useMediaQuery from "../hooks/useMediaQuery";
 
 const slowTransition = {
 	type: "spring",
