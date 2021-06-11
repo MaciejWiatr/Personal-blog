@@ -13,12 +13,13 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "jsx": "preserve",
+		"baseUrl": "./src/",
         "paths": {
-            "@components/*": ["./src/components/*"],
-            "@hooks/*": ["./src/shared/hooks/*"],
-            "@store/*": ["./src/shared/store/*"],
-            "@shared/*": ["./src/shared/*"],
-            "@gql/*": ["./src/gql/*"]
+            "@components/*": ["components/*"],
+            "@hooks/*": ["shared/hooks/*"],
+            "@store/*": ["shared/store/*"],
+            "@shared/*": ["shared/*"],
+            "@gql/*": ["gql/*"]
         }
     },
     "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "**/*.d.ts"],
