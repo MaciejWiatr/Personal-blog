@@ -2,7 +2,6 @@ import NavBar from "../Navbar";
 import styled from "@emotion/styled";
 import mq from "../../utils/mediaQuery";
 import BottomNav from "../BottomNav";
-import { motion } from "framer-motion";
 import useMediaQuery from "../../hooks/useMediaQuery";
 
 const BaseLayout = ({ children }) => {
