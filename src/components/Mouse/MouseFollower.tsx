@@ -1,11 +1,17 @@
 import styled from '@emotion/styled';
 import { AnimatePresence, motion } from 'framer-motion';
+import { FC } from 'react';
+import { RefObject } from 'react';
 import { useMouse } from 'react-use';
 import { getMousePosOrDefault } from './utils';
 import useMediaQuery from '@hooks/useMediaQuery';
 import useMouseStore from '@store/useMouseStore';
 
-const MouseFollower = ({ appRef }) => {
+interface IMouseFollowerProps {
+    appRef: RefObject<Element>;
+}
+
+const MouseFollower: FC<IMouseFollowerProps> = ({ appRef }) => {
     const { isSm } = useMediaQuery();
     const { docX, docY } = useMouse(appRef);
     const { isHovered, hoverImg } = useMouseStore();

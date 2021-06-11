@@ -4,6 +4,7 @@ import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
 import { useCallback, useEffect } from 'react';
+import { FC } from 'react';
 import { FiSun, FiMoon } from 'react-icons/fi';
 import { MouseHoverEffect } from '../Mouse';
 import useDarkMode from '@hooks/useDarkMode';
@@ -36,7 +37,7 @@ const smallHeaderVariants = {
     },
 };
 
-const NavBar = () => {
+const NavBar: FC = () => {
     const { isDark, toggleDark } = useDarkMode();
     const { t } = useTranslation('navbar');
     const { locale } = useRouter();

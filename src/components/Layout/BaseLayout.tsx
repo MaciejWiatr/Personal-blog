@@ -1,10 +1,11 @@
 import styled from '@emotion/styled';
+import { FC } from 'react';
 import BottomNav from '../Navigation/BottomNav';
 import NavBar from '../Navigation/Navbar';
 import useMediaQuery from '@hooks/useMediaQuery';
 import mq from '@shared/utils/mediaQuery';
 
-const BaseLayout = ({ children }) => {
+const BaseLayout: FC = ({ children }) => {
     const { isXs } = useMediaQuery();
 
     return (
