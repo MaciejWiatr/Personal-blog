@@ -1,0 +1,14 @@
+{
+    "tabWidth": 4,
+    "printWidth": 80,
+    "singleQuote": true,
+    "parser": "typescript",
+    "importOrder": [
+        "^[./]",
+        "^@hooks/(.*)$",
+        "^@store/(.*)$",
+        "^@shared/(.*)$",
+        "^@gql/(.*)$",
+        "^@components/(.*)$"
+    ]
+}
