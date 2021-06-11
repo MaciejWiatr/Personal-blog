@@ -35,6 +35,7 @@ export default function Home({ posts }) {
 								<PostElement>
 									<PostImageWrapper>
 										<PostImage
+											loading="lazy"
 											initial={{ scale: 1.1 }}
 											whileHover={{ scale: 1.25 }}
 											src={post.coverImage.url}
@@ -74,9 +75,7 @@ const PostDescription = styled.div`
 
 const PostReadTime = styled.p`
 	text-align: left;
-	margin: 0px;
-	margin-top: 0.25rem;
-	margin-bottom: 0.25rem;
+	margin: 0.25rem 0px;
 `;
 
 const HeroHeader = styled.header`
@@ -120,7 +119,7 @@ const PostList = styled.ul`
 	width: 100%;
 	display: grid;
 	list-style: none;
-	padding-left: 0px;
+	padding-left: 0;
 	gap: 1rem;
 	grid-template-columns: 1fr 1fr 1fr 1fr;
 
@@ -148,7 +147,7 @@ const PostImage = styled(motion.img)`
 `;
 
 const PostTitle = styled.h3`
-	margin: 0px;
+	margin: 0;
 	font-size: 1rem;
 	font-weight: 700;
 	flex-grow: 1;
