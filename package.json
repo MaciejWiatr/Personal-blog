@@ -5,11 +5,11 @@
 	"scripts": {
 		"dev": "next dev",
 		"build": "next build",
-		"postbuild": "next-sitemap --config next-sitemap.config.js",
+		"postbuild": "next-sitemap --config ./config/next-sitemap.config.js",
 		"start": "next start",
 		"build:export": "next build && next export",
 		"test": "jest",
-		"gql:gen": "graphql-codegen --config codegen.yml -r dotenv/config"
+		"gql:gen": "graphql-codegen --config ./config/codegen.yml -r dotenv/config"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.4.0",

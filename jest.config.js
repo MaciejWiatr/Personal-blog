@@ -18,7 +18,7 @@ const SRC_PATH = '<rootDir>/src';
 
 module.exports = {
     testEnvironment: 'jsdom',
-    setupFilesAfterEnv: ['<rootDir>/setupTests.js'],
+    setupFilesAfterEnv: ['<rootDir>/config/setupTests.js'],
     testPathIgnorePatterns: ['<rootDir>/.next, <rootDir>/node_modules'],
     moduleDirectories: ['node_modules', 'src'],
     moduleNameMapper: makeModuleNameMapper(SRC_PATH, TS_CONFIG_PATH),
