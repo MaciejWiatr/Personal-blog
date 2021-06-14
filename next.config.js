@@ -1,28 +1,32 @@
-const { i18n } = require("./next-i18next.config");
+const { i18n } = require('./next-i18next.config');
 
 module.exports = {
-	i18n,
+    i18n,
 
-	typescript: {
-		// !! WARN !!
-		// Dangerously allow production builds to successfully complete even if
-		// your project has type errors.
-		// !! WARN !!
-		ignoreBuildErrors: true,
-	},
+    typescript: {
+        // !! WARN !!
+        // Dangerously allow production builds to successfully complete even if
+        // your project has type errors.
+        // !! WARN !!
+        ignoreBuildErrors: true,
+    },
 
-	async headers() {
-		return [
-			{
-				source: "/",
-				headers: [
-					{
-						type: "cookie",
-						key: "SameSite",
-						value: "Lax",
-					},
-				],
-			},
-		];
-	},
+    images: {
+        domains: ['media.graphcms.com'],
+    },
+
+    async headers() {
+        return [
+            {
+                source: '/',
+                headers: [
+                    {
+                        type: 'cookie',
+                        key: 'SameSite',
+                        value: 'Lax',
+                    },
+                ],
+            },
+        ];
+    },
 };

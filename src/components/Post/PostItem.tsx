@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { motion } from 'framer-motion';
+import Image from 'next/image';
 import { FC } from 'react';
 import mq from '../../shared/utils/mediaQuery';
 import timeToRead from '../../shared/utils/timeToRead';
@@ -15,15 +16,12 @@ const PostItem: FC<IPostItemProps> = (props) => {
         <PostElement>
             <PostImageWrapper>
                 <PostImage
-                    loading="lazy"
-                    initial={{
-                        scale: 1.1,
-                    }}
-                    whileHover={{
-                        scale: 1.25,
-                    }}
+                    quality="60"
+                    layout="fill"
                     src={props.url}
+                    loading="lazy"
                 />
+                {/* <PostImage src={props.url} /> */}
             </PostImageWrapper>
             <PostDescription>
                 <PostReadTime>{timeToRead(props.text)} min read</PostReadTime>
@@ -51,12 +49,15 @@ const PostImageWrapper = styled.div`
     width: 100%;
     border-radius: 0.25rem;
     overflow: hidden;
+    aspect-ratio: 16/9;
+    position: relative;
 `;
 
-const PostImage = styled(motion.img)`
+const PostImage = styled(Image)`
     width: 100%;
     overflow: hidden;
     border-radius: 0.25rem;
+    object-fit: cover;
 `;
 
 const PostTitle = styled.h3`
