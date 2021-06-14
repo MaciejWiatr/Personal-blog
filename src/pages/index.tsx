@@ -25,6 +25,7 @@ const Home: FC<IHomeProps> = ({ posts }) => {
                     <Trans
                         i18nKey="heroText"
                         t={t}
+                        // eslint-disable-next-line react/jsx-key
                         components={[<HoverablePrimaryText />]}
                     />
                 </HeroTitle>
