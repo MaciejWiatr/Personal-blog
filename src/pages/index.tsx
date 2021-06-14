@@ -120,3 +120,5 @@ const HoverablePrimaryText = ({ children = null }) => (
         <PrimaryText>{children}</PrimaryText>
     </MouseHoverEffect>
 );
+
+export default Home;
