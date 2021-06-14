@@ -5,6 +5,13 @@ import { FC } from 'react';
 import mq from '../../shared/utils/mediaQuery';
 import timeToRead from '../../shared/utils/timeToRead';
 
+function GraphCMSImageLoader({ src, width }) {
+    const relativeSrc = (src) => src.split('/').pop();
+
+    return `https://media.graphcms.com/resize=width:${width}/output=format:webp/${relativeSrc(
+        src
+    )}`;
+}
 interface IPostItemProps {
     url: string;
     text: string;
@@ -16,7 +23,7 @@ const PostItem: FC<IPostItemProps> = (props) => {
         <PostElement>
             <PostImageWrapper>
                 <PostImage
-                    quality="60"
+                    loader={GraphCMSImageLoader}
                     layout="fill"
                     src={props.url}
                     loading="lazy"

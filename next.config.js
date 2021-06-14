@@ -13,6 +13,7 @@ module.exports = {
 
     images: {
         domains: ['media.graphcms.com'],
+        deviceSizes: [350, 768, 992, 1200],
     },
 
     async headers() {
