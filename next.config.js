@@ -11,6 +11,10 @@ module.exports = {
         ignoreBuildErrors: true,
     },
 
+    images: {
+        domains: ['media.graphcms.com'],
+    },
+
     async headers() {
         return [
             {

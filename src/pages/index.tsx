@@ -1,16 +1,21 @@
 import styled from '@emotion/styled';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
+import { FC } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { Post } from '../gql/generated';
 import mq from '@shared/utils/mediaQuery';
-import gqClient from '@gql/client';
-import { getAllPostsQuery } from '@gql/queries';
+import { sdk } from '@gql/client';
 import BaseLayout from '@components/Layout/BaseLayout';
 import { MouseHoverEffect } from '@components/Mouse';
 import { PostItem } from '@components/Post';
 import { PrimaryText } from '@components/typography';
 
-export default function Home({ posts }) {
+interface IHomeProps {
+    posts: Post[];
+}
+
+const Home: FC<IHomeProps> = ({ posts }) => {
     const { t } = useTranslation('common');
 
     return (
@@ -29,8 +34,12 @@ export default function Home({ posts }) {
             <PostList>
                 {posts.map((post) => {
                     return (
-                        <Link href={`/post/${post.slug}`} passHref>
-                            <a>
+                        <Link
+                            href={`/post/${post.slug}`}
+                            key={post.id}
+                            passHref
+                        >
+                            <a href="/">
                                 <PostItem
                                     url={post.coverImage.url}
                                     text={post.content.text}
@@ -43,10 +52,10 @@ export default function Home({ posts }) {
             </PostList>
         </BaseLayout>
     );
-}
+};
 
 export async function getStaticProps({ locale }) {
-    const data = await gqClient.request(getAllPostsQuery);
+    const data = await sdk.getAllPosts();
 
     return {
         props: {
