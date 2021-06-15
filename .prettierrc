@@ -4,6 +4,7 @@
     "singleQuote": true,
     "parser": "typescript",
     "importOrder": [
+        "^preact.*",
         "^[./]",
         "^@hooks/(.*)$",
         "^@store/(.*)$",

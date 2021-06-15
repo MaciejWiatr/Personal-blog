@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { motion, useAnimation } from 'framer-motion';
+import { m, useAnimation } from 'framer-motion';
 import { useTranslation } from 'next-i18next';
 import { useRouter } from 'next/dist/client/router';
 import Link from 'next/link';
@@ -136,7 +136,7 @@ const NavContainer = styled.nav`
     height: 3rem;
 `;
 
-const NavHeader = styled(motion.h2)`
+const NavHeader = styled(m.h2)`
     font-size: 1.25rem;
     position: absolute;
     top: -0.4rem;
@@ -158,7 +158,7 @@ const NavItem = styled.li`
     }
 `;
 
-const ColormodeButton = styled(motion.button)`
+const ColormodeButton = styled(m.button)`
     cursor: pointer;
     justify-content: center;
     align-items: center;

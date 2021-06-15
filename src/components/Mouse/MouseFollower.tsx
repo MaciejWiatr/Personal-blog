@@ -1,5 +1,5 @@
 import styled from '@emotion/styled';
-import { AnimatePresence, motion } from 'framer-motion';
+import { AnimatePresence, m } from 'framer-motion';
 import { FC } from 'react';
 import { RefObject } from 'react';
 import { useMouse } from 'react-use';
@@ -51,7 +51,7 @@ const MouseFollower: FC<IMouseFollowerProps> = ({ appRef }) => {
     );
 };
 
-const MouseCircle = styled(motion.div)`
+const MouseCircle = styled(m.div)`
     position: absolute;
     height: 2.5rem;
     width: 2.5rem;
@@ -63,7 +63,7 @@ const MouseCircle = styled(motion.div)`
     z-index: 99;
 `;
 
-const MouseImage = styled(motion.img)`
+const MouseImage = styled(m.img)`
     width: 100%;
     height: 100%;
     object-fit: cover;

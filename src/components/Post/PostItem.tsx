@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { FC } from 'react';
 import mq from '../../shared/utils/mediaQuery';

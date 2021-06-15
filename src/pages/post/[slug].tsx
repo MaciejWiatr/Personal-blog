@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { motion } from 'framer-motion';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import { getAllPostsQuery } from '../../gql/queries';
 import gqClient, { sdk } from '@gql/client';
@@ -17,7 +16,7 @@ const PostPage = ({ post }: { post: Post }) => {
     );
 };
 
-const PostImage = styled(motion.img)`
+const PostImage = styled.img`
     width: 100%;
 `;
 const PostImageWrapper = styled.div`
