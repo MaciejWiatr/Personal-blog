@@ -3570,6 +3570,11 @@ dir-glob@^3.0.1:
   dependencies:
     path-type "^4.0.0"
 
+disqus-react@^1.0.11:
+  version "1.0.11"
+  resolved "https://registry.yarnpkg.com/disqus-react/-/disqus-react-1.0.11.tgz#7949923320835310666cbfc77aae90577711434a"
+  integrity sha512-DZGc6kk16EGLAJtJAn+EdNHy44pBD0QJnuuOSyMf6qqsZrIYwkBFe72mdvRKfGYD1toR7bAvkRjmec/YQTrG+w==
+
 doctrine@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/doctrine/-/doctrine-2.1.0.tgz#5cd01fc101621b42c4cd7f5d1a66243716d3f39d"
@@ -6191,10 +6196,10 @@ next-compose-plugins@^2.2.1:
   resolved "https://registry.yarnpkg.com/next-compose-plugins/-/next-compose-plugins-2.2.1.tgz#020fc53f275a7e719d62521bef4300fbb6fde5ab"
   integrity sha512-OjJ+fV15FXO2uQXQagLD4C0abYErBjyjE0I0FHpOEIB8upw0hg1ldFP6cqHTJBH1cZqy96OeR3u1dJ+Ez2D4Bg==
 
-next-i18next@^8.4.0:
-  version "8.4.0"
-  resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-8.4.0.tgz#c98c33071a3165a58ee7f3a566c78abe15ac6f6d"
-  integrity sha512-QwUXDMOnguEWSrbA6fPDBReiQG0kgXm/c69R3u21ClrurT/7JJwNm2qUhtsY3+EZDC4O/7mFXK3lRrSszgf5BA==
+next-i18next@^8.5.0:
+  version "8.5.0"
+  resolved "https://registry.yarnpkg.com/next-i18next/-/next-i18next-8.5.0.tgz#60e176d8c9ad8d6a289dd46ab877638a19b0e197"
+  integrity sha512-atCoxRB8AKuN5xuTZhPmkkoKBvsH9cAgJfO5A8PQW4xz9jc3uOsG7CuFXpgddg73EOOWqr33ghM53q+XcmwxbQ==
   dependencies:
     "@babel/runtime" "^7.13.17"
     "@types/hoist-non-react-statics" "^3.3.1"
@@ -7498,6 +7503,11 @@ snake-case@^3.0.4:
   dependencies:
     dot-case "^3.0.4"
     tslib "^2.0.3"
+
+snarkdown@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/snarkdown/-/snarkdown-2.0.0.tgz#b1feb4db91b9f94a8ebbd7a50f3e99aee18b1e03"
+  integrity sha512-MgL/7k/AZdXCTJiNgrO7chgDqaB9FGM/1Tvlcenenb7div6obaDATzs16JhFyHHBGodHT3B7RzRc5qk8pFhg3A==
 
 source-list-map@^2.0.1:
   version "2.0.1"
