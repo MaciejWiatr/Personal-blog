@@ -1,4 +1,4 @@
-import BottomNav from "./BottomNav";
-import NavBar from "./Navbar";
+import BottomNav from './BottomNav';
+import NavBar from './Navbar';
 
 export { BottomNav, NavBar };
