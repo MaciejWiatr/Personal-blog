@@ -6,7 +6,7 @@ import dynamic from 'next/dynamic';
 import { useRef } from 'react';
 import '../../styles/globals.css';
 import MotionProvider from '../contexts/MotionProvider';
-import ColormodeProvider from '../contexts/ThemeContext';
+import ColormodeProvider from '../contexts/ColormodeProvider';
 import { AppWrapper } from '@components/Layout';
 
 
@@ -19,14 +19,16 @@ function MyApp({ Component, pageProps }) {
     const appRef = useRef(null);
 
     return (
-        <MotionProvider>
-            <AppWrapper ref={appRef}>
-                <MouseFollower appRef={appRef} />
-                <ColormodeProvider>
-                    <Component {...pageProps} />
-                </ColormodeProvider>
-            </AppWrapper>
-        </MotionProvider>
+        <>
+            <MotionProvider>
+                <AppWrapper ref={appRef}>
+                    <MouseFollower appRef={appRef} />
+                    <ColormodeProvider>
+                        <Component {...pageProps} />
+                    </ColormodeProvider>
+                </AppWrapper>
+            </MotionProvider>
+        </>
     );
 }
 

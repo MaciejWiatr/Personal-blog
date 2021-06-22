@@ -17,37 +17,41 @@ const MouseFollower: FC<IMouseFollowerProps> = ({ appRef }) => {
     const { isHovered, hoverImg } = useMouseStore();
 
     return (
-        <MouseCircle
-            animate={{
-                x: getMousePosOrDefault(docX, isSm),
-                y: getMousePosOrDefault(docY, isSm),
-                scale: isHovered ? 3 : 1,
-            }}
-            transition={{
-                x: {
-                    type: 'spring',
-                    stiffness: 150,
-                    damping: 15,
-                },
-                y: {
-                    type: 'spring',
-                    stiffness: 150,
-                    damping: 15,
-                },
-            }}
-        >
-            <AnimatePresence exitBeforeEnter>
-                {hoverImg && (
-                    <MouseImage
-                        loading="lazy"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.3 }}
-                        exit={{ opacity: 0 }}
-                        src={hoverImg}
-                    />
-                )}
-            </AnimatePresence>
-        </MouseCircle>
+        <>
+            {!isSm && (
+                <MouseCircle
+                    animate={{
+                        x: getMousePosOrDefault(docX, isSm),
+                        y: getMousePosOrDefault(docY, isSm),
+                        scale: isHovered ? 3 : 1,
+                    }}
+                    transition={{
+                        x: {
+                            type: 'spring',
+                            stiffness: 150,
+                            damping: 15,
+                        },
+                        y: {
+                            type: 'spring',
+                            stiffness: 150,
+                            damping: 15,
+                        },
+                    }}
+                >
+                    <AnimatePresence exitBeforeEnter>
+                        {hoverImg && (
+                            <MouseImage
+                                loading="lazy"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 0.3 }}
+                                exit={{ opacity: 0 }}
+                                src={hoverImg}
+                            />
+                        )}
+                    </AnimatePresence>
+                </MouseCircle>
+            )}
+        </>
     );
 };
 

@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { ColormodeContext } from "../../contexts/ThemeContext";
+import { useContext } from 'react';
+import { ColormodeContext } from '../../contexts/ColormodeProvider';
 
 const useDarkMode = () => {
-	return useContext(ColormodeContext);
+    return useContext(ColormodeContext);
 };
 
 export default useDarkMode;

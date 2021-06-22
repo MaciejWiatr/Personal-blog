@@ -1,6 +1,6 @@
-import { Theme } from '@emotion/react';
 import styled from '@emotion/styled';
 import { m } from 'framer-motion';
+import mq from '@shared/utils/mediaQuery';
 
 const LanguageSwitchLink = styled.a`
     color: ${({ theme }) => theme.textBase};
@@ -16,22 +16,23 @@ const LanguageSwitchLink = styled.a`
     cursor: pointer !important;
 `;
 
-interface NavContainerProps {
-    theme?: Theme;
-    fix: boolean;
-}
-
-const NavContainer = styled.nav<NavContainerProps>`
-    position: ${({ fix }) => (fix ? 'fixed' : 'sticky')};
-    top: 0;
-    left: 0;
+const NavContainer = styled.nav`
+    position: relative;
     width: 100%;
     overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 3.5rem;
-    transition: all 0.25s ease;
+    background-color: ${({ theme }) => theme.backgroundColor};
+    z-index: 98;
+    @media ${mq('sm')} {
+        position: fixed;
+        top: 0;
+        left: 0;
+        padding: 2.5rem 1rem;
+        height: 4rem;
+    }
 `;
 
 const NavHeader = styled.h2`

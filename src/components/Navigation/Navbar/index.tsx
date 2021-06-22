@@ -22,7 +22,7 @@ const NavBar: FC = () => {
     const { isXs } = useMediaQuery();
 
     return (
-        <NavContainer fix={false}>
+        <NavContainer>
             <Link href="/" passHref>
                 <a>
                     <NavHeader>{isXs ? 'MW' : 'Maciej Wiatr'}</NavHeader>

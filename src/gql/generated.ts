@@ -2643,7 +2643,7 @@ export type Post = Node & {
   /** Upload or select a cover image to set as your Featured Image */
   coverImage?: Maybe<Asset>;
   /** Write your blog post! */
-  content: RichText;
+  content: PostContentRichText;
   /** Add any relevant tags to this blog post */
   tags: Array<Scalars['String']>;
   /** Who should be credited with writing this post? */
@@ -2714,6 +2714,22 @@ export type PostConnection = {
   edges: Array<PostEdge>;
   aggregate: Aggregate;
 };
+
+export type PostContentRichText = {
+  __typename?: 'PostContentRichText';
+  /** @deprecated Please use the 'json' field */
+  raw: Scalars['RichTextAST'];
+  json: Scalars['RichTextAST'];
+  /** Returns HTMl representation */
+  html: Scalars['String'];
+  /** Returns Markdown representation */
+  markdown: Scalars['String'];
+  /** Returns plain-text contents of RichText */
+  text: Scalars['String'];
+  references: Array<PostContentRichTextEmbeddedTypes>;
+};
+
+export type PostContentRichTextEmbeddedTypes = Asset;
 
 export type PostCreateInput = {
   createdAt?: Maybe<Scalars['DateTime']>;
@@ -4523,13 +4539,13 @@ export type GetAllPostsQuery = (
   { __typename?: 'Query' }
   & { posts: Array<(
     { __typename?: 'Post' }
-    & Pick<Post, 'createdAt' | 'slug' | 'title' | 'id'>
+    & Pick<Post, 'createdAt' | 'slug' | 'title' | 'id' | 'tags'>
     & { coverImage?: Maybe<(
       { __typename?: 'Asset' }
       & Pick<Asset, 'url'>
     )>, content: (
-      { __typename?: 'RichText' }
-      & Pick<RichText, 'text'>
+      { __typename?: 'PostContentRichText' }
+      & Pick<PostContentRichText, 'text'>
     ) }
   )> }
 );
@@ -4551,8 +4567,8 @@ export type GetPostBySlugQuery = (
       { __typename?: 'Author' }
       & Pick<Author, 'name'>
     )>, content: (
-      { __typename?: 'RichText' }
-      & Pick<RichText, 'markdown'>
+      { __typename?: 'PostContentRichText' }
+      & Pick<PostContentRichText, 'markdown' | 'html'>
     ) }
   )> }
 );
@@ -4571,6 +4587,7 @@ export const GetAllPostsDocument = gql`
       text
     }
     id
+    tags
   }
 }
     `;
@@ -4588,7 +4605,9 @@ export const GetPostBySlugDocument = gql`
     }
     content {
       markdown
+      html
     }
+    tags
   }
 }
     `;

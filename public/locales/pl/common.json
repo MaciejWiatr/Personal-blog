@@ -1,5 +1,7 @@
 {
   "heroText": "Cześć, jestem <0>Maciej</0> a to mój blog",
   "heroDescription": "Dzięki za wizytę, mam nadzieję że znajdziesz tu coś dla siebie 😀",
-  "postSectionHeader": "Ostatnie wpisy:"
+  "postSectionHeader": "Ostatnie wpisy:",
+  "homePageTitle": "Blog Macieja Wiatra",
+  "homePageDescription": "Cześć, jestem Maciej a to mój blog o tematyce programowania. Mam nadzieję że znajdziesz tu coś co cie zainteresuje"
 }

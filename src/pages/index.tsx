@@ -3,6 +3,7 @@ import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import Link from 'next/link';
 import { FC } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import { HomeHead } from '../components/Head';
 import { Post } from '../gql/generated';
 import mq from '@shared/utils/mediaQuery';
 import { sdk } from '@gql/client';
@@ -19,39 +20,42 @@ const Home: FC<IHomeProps> = ({ posts }) => {
     const { t } = useTranslation('common');
 
     return (
-        <BaseLayout>
-            <HeroHeader>
-                <HeroTitle>
-                    <Trans
-                        i18nKey="heroText"
-                        t={t}
-                        // eslint-disable-next-line react/jsx-key
-                        components={[<HoverablePrimaryText />]}
-                    />
-                </HeroTitle>
-                <HeroDescription>{t('heroDescription')}</HeroDescription>
-            </HeroHeader>
-            <PostHeader>{t('postSectionHeader')}</PostHeader>
-            <PostList>
-                {posts.map((post) => {
-                    return (
-                        <Link
-                            href={`/post/${post.slug}`}
-                            key={post.id}
-                            passHref
-                        >
-                            <a href="/">
-                                <PostItem
-                                    url={post.coverImage.url}
-                                    text={post.content.text}
-                                    title={post.title}
-                                ></PostItem>
-                            </a>
-                        </Link>
-                    );
-                })}
-            </PostList>
-        </BaseLayout>
+        <>
+            <HomeHead />
+            <BaseLayout>
+                <HeroHeader>
+                    <HeroTitle>
+                        <Trans
+                            i18nKey="heroText"
+                            t={t}
+                            // eslint-disable-next-line react/jsx-key
+                            components={[<HoverablePrimaryText />]}
+                        />
+                    </HeroTitle>
+                    <HeroDescription>{t('heroDescription')}</HeroDescription>
+                </HeroHeader>
+                <PostHeader>{t('postSectionHeader')}</PostHeader>
+                <PostList>
+                    {posts.map((post) => {
+                        return (
+                            <Link
+                                href={`/article/${post.slug}`}
+                                key={post.id}
+                                passHref
+                            >
+                                <a href="/">
+                                    <PostItem
+                                        url={post.coverImage.url}
+                                        text={post.content.text}
+                                        title={post.title}
+                                    ></PostItem>
+                                </a>
+                            </Link>
+                        );
+                    })}
+                </PostList>
+            </BaseLayout>
+        </>
     );
 };
 
@@ -70,6 +74,10 @@ const HeroHeader = styled.header`
     width: 100%;
     margin-top: 5rem;
     margin-bottom: 5rem;
+
+    @media ${mq('sm')} {
+        margin: 2rem 0rem;
+    }
 `;
 
 const HeroTitle = styled.h1`
@@ -86,7 +94,7 @@ const HeroTitle = styled.h1`
 
     @media ${mq('md')} {
         width: 100%;
-        font-size: 2.5rem;
+        font-size: 3rem;
     }
 
     @media ${mq('sm')} {

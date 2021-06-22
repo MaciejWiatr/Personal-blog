@@ -13,6 +13,7 @@ const getAllPostsQuery = gql`
                 text
             }
             id
+            tags
         }
     }
 `;
@@ -31,7 +32,9 @@ const getPostBySlugQuery = gql`
             }
             content {
                 markdown
+                html
             }
+            tags
         }
     }
 `;

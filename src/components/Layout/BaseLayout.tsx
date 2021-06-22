@@ -40,7 +40,7 @@ const MainContainer = styled.div`
     @media ${mq('sm')} {
         padding-left: 1rem;
         padding-right: 1rem;
-        padding-top: 1rem;
+        padding-top: 5rem;
     }
 `;
 
