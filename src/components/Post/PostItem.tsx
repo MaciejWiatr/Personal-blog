@@ -1,8 +1,8 @@
 import styled from '@emotion/styled';
 import Image from 'next/image';
 import { FC } from 'react';
-import mq from '../../shared/utils/mediaQuery';
-import timeToRead from '../../shared/utils/timeToRead';
+import mq from '@shared/utils/mediaQuery';
+import timeToRead from '@shared/utils/timeToRead';
 
 function GraphCMSImageLoader({ src, width }) {
     const relativeSrc = (src) => src.split('/').pop();
@@ -15,11 +15,12 @@ interface IPostItemProps {
     url: string;
     text: string;
     title: string;
+    author: any;
 }
 
-const PostItem: FC<IPostItemProps> = (props) => {
+const PostCard: FC<IPostItemProps> = (props) => {
     return (
-        <PostElement>
+        <PostWrapper>
             <PostImageWrapper>
                 <PostImage
                     loader={GraphCMSImageLoader}
@@ -27,17 +28,31 @@ const PostItem: FC<IPostItemProps> = (props) => {
                     src={props.url}
                     loading="lazy"
                 />
-                {/* <PostImage src={props.url} /> */}
             </PostImageWrapper>
             <PostDescription>
-                <PostReadTime>{timeToRead(props.text)} min read</PostReadTime>
+                <PostHeader>
+                    <PostAuthor>{props.author}</PostAuthor>
+                    {'·'}
+                    <PostReadTime>
+                        {timeToRead(props.text)} min read
+                    </PostReadTime>
+                </PostHeader>
                 <PostTitle>{props.title}</PostTitle>
             </PostDescription>
-        </PostElement>
+        </PostWrapper>
     );
 };
 
+const PostHeader = styled.div`
+    display: flex;
+    align-items: center;
+    column-gap: 0.25rem;
+`;
+
+const PostAuthor = styled.span``;
+
 const PostDescription = styled.div`
+    margin-top: .5rem;
     width: 100%;
 `;
 
@@ -45,7 +60,7 @@ const PostReadTime = styled.p`
     text-align: left;
     margin: 0.25rem 0px;
 `;
-const PostElement = styled.li`
+const PostWrapper = styled.li`
     width: 100%;
     position: relative;
     overflow: hidden;
@@ -57,6 +72,7 @@ const PostImageWrapper = styled.div`
     overflow: hidden;
     aspect-ratio: 16/9;
     position: relative;
+    border-radius: 0.5rem;
 `;
 
 const PostImage = styled(Image)`
@@ -64,6 +80,13 @@ const PostImage = styled(Image)`
     overflow: hidden;
     border-radius: 0.25rem;
     object-fit: cover;
+    opacity: 0.9;
+    transition: all 0.25s ease;
+
+    &:hover {
+        opacity: 1;
+        transform: scale(1.1);
+    }
 `;
 
 const PostTitle = styled.h3`
@@ -82,4 +105,4 @@ const PostTitle = styled.h3`
     }
 `;
 
-export default PostItem;
+export default PostCard;

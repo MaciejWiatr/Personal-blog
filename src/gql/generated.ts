@@ -4546,7 +4546,10 @@ export type GetAllPostsQuery = (
     )>, content: (
       { __typename?: 'PostContentRichText' }
       & Pick<PostContentRichText, 'text'>
-    ) }
+    ), author?: Maybe<(
+      { __typename?: 'Author' }
+      & Pick<Author, 'name'>
+    )> }
   )> }
 );
 
@@ -4585,6 +4588,9 @@ export const GetAllPostsDocument = gql`
     }
     content {
       text
+    }
+    author {
+      name
     }
     id
     tags

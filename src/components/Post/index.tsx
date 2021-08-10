@@ -1,3 +1,3 @@
-import PostItem from "./PostItem";
+import PostCard from './PostItem';
 
-export { PostItem };
+export { PostCard as PostItem };

@@ -48,7 +48,7 @@ const NavItem = styled.li`
     display: flex;
     align-items: center;
     z-index: 9;
-    font-weight: 600;
+    font-weight: 500;
     &:not(:last-child) {
         margin-right: 1rem;
     }

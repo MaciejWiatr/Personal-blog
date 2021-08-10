@@ -18,7 +18,7 @@ import { MouseHoverEffect } from '@components/Mouse';
 const NavBar: FC = () => {
     const { isDark, toggleDark } = useDarkMode();
     const { t } = useTranslation('navbar');
-    const { locale } = useRouter();
+    const { locale, asPath } = useRouter();
     const { isXs } = useMediaQuery();
 
     return (
@@ -37,7 +37,7 @@ const NavBar: FC = () => {
                     </>
                 )}
                 <NavItem>
-                    <Link href="/" locale={locale === 'pl' ? 'en' : 'pl'}>
+                    <Link href={asPath} locale={locale === 'pl' ? 'en' : 'pl'}>
                         <LanguageSwitchLink>
                             <p>
                                 Switch to{' '}

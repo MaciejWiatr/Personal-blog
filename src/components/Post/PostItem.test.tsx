@@ -1,12 +1,13 @@
 import { render } from '@testing-library/react';
-import PostItem from './PostItem';
+import PostCard from './PostItem';
 
 it('PostItem should properly render', () => {
     const testText = 'postitem-test';
     const testImage = 'http://placecorgi.com/260/180';
+    const testAuthor = "post-author"
 
     const { getByRole, getByText } = render(
-        <PostItem text={testText} title={testText} url={testImage} />
+        <PostCard author={testAuthor} text={testText} title={testText} url={testImage} />
     );
 
     const title = getByText(testText);

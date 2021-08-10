@@ -12,6 +12,9 @@ const getAllPostsQuery = gql`
             content {
                 text
             }
+            author {
+                name
+            }
             id
             tags
         }

@@ -1,7 +1,8 @@
 {
   "heroText": "Hello, I'm <0>Maciej</0> and this is my blog",
-  "heroDescription": "Thanks for the visit, I hope you will find something for yourself 😀",
+  "heroDescription": "Thanks for visiting me and i hope you'll find something that may interest you 😀",
   "postSectionHeader": "Latest posts:",
   "homePageTitle": "Maciej's Wiatr blog",
-  "homePageDescription": "Hi, my name is Maciej and this is my programming blog. I hope you will find something interesting for you here"
+  "homePageDescription": "Hi, my name is Maciej and this is my programming blog. I hope you will find something interesting for you here",
+  "timeToRead": "Time to read"
 }

@@ -48,6 +48,7 @@ const Home: FC<IHomeProps> = ({ posts }) => {
                                         url={post.coverImage.url}
                                         text={post.content.text}
                                         title={post.title}
+                                        author={post.author.name}
                                     ></PostItem>
                                 </a>
                             </Link>

@@ -1,12 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Lora:wght@400;500;600;700&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700&display=swap');
 
 html,
 body {
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
-	font-family: "Lora", serif;
+	/* font-family: "Lora", serif; */
+	font-family: 'Inter', sans-serif;
 	overflow-x: hidden;
 }
 
@@ -20,12 +22,15 @@ a {
 }
 
 .light-mode {
-	--theme-bg-color: #deeeea;
+	/* --theme-bg-color: #deeeea;
+	--theme-text-base: #231e23;
+	--theme-text-primary: #bf1363; */
+	--theme-bg-color: white;
 	--theme-text-base: #231e23;
 	--theme-text-primary: #bf1363;
 }
 .dark-mode {
 	--theme-bg-color: #231e23;
-	--theme-text-base: #deeeea;
+	--theme-text-base: white;
 	--theme-text-primary: #bf1363;
 }
